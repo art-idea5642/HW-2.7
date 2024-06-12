@@ -1,4 +1,4 @@
-package employeeBook;
+package com.coursework.EmployeeBook.dto;
 import java.util.Objects;
 
 public class Employee {

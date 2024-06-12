@@ -1,4 +1,9 @@
-package employeeBook;
+package com.coursework.EmployeeBook.service;
+
+import com.coursework.EmployeeBook.dto.Employee;
+import com.coursework.EmployeeBook.exceptions.EmployeeAlreadyAddedException;
+import com.coursework.EmployeeBook.exceptions.EmployeeNotFoundException;
+import com.coursework.EmployeeBook.exceptions.EmployeeStorageIsFullException;
 
 import java.util.List;
 

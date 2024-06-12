@@ -1,4 +1,4 @@
-package employeeBook;
+package com.coursework.EmployeeBook.exceptions;
 
 public class EmployeeAlreadyAddedException extends RuntimeException{
     public EmployeeAlreadyAddedException() {

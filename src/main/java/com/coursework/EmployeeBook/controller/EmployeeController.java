@@ -1,5 +1,7 @@
-package employeeBook;
+package com.coursework.EmployeeBook.controller;
 
+import com.coursework.EmployeeBook.dto.Employee;
+import com.coursework.EmployeeBook.service.EmployeeService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
