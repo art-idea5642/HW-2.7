@@ -12,12 +12,12 @@ import java.util.Map;
 public class EmployeeService {
     private final Map<String, Employee> employeeMap = new HashMap<>();
 
-    // Метод для генерации ключа на основе имени и фамилии
+
     private String generateKey(Employee employee) {
         return employee.getFirstName() + " " + employee.getSurname();
     }
 
-    // Метод для добавления сотрудника
+
     public void addEmployee(Employee employee) {
         String key = generateKey(employee);
         if (employeeMap.containsKey(key)) {
@@ -26,7 +26,7 @@ public class EmployeeService {
         employeeMap.put(key, employee);
     }
 
-    // Метод для удаления сотрудника
+
     public void removeEmployee(String name, String surname) {
         String key = name + " " + surname;
         if (!employeeMap.containsKey(key)) {
@@ -35,7 +35,7 @@ public class EmployeeService {
         employeeMap.remove(key);
     }
 
-    // Метод для поиска сотрудника
+
     public Employee findEmployee(String name, String surname) {
         String key = name + " " + surname;
         Employee employee = employeeMap.get(key);
@@ -45,7 +45,7 @@ public class EmployeeService {
         return employee;
     }
 
-    // Метод для получения всех сотрудников
+
     public Map<String, Employee> getAllEmployees() {
         return employeeMap;
     }

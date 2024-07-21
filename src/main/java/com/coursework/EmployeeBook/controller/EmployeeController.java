@@ -18,7 +18,7 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
-    // Добавление сотрудника
+
     @PostMapping
     public ResponseEntity<String> addEmployee(@RequestBody Employee employee) {
         try {
@@ -29,7 +29,7 @@ public class EmployeeController {
         }
     }
 
-    // Удаление сотрудника
+
     @DeleteMapping
     public ResponseEntity<String> removeEmployee(@RequestParam String name, @RequestParam String surname) {
         try {
@@ -40,7 +40,7 @@ public class EmployeeController {
         }
     }
 
-    // Поиск сотрудника
+
     @GetMapping
     public ResponseEntity<Employee> findEmployee(@RequestParam String name, @RequestParam String surname) {
         try {
@@ -51,7 +51,7 @@ public class EmployeeController {
         }
     }
 
-    // Получение всех сотрудников
+
     @GetMapping("/all")
     public ResponseEntity<Map<String, Employee>> getAllEmployees() {
         return ResponseEntity.ok(employeeService.getAllEmployees());
