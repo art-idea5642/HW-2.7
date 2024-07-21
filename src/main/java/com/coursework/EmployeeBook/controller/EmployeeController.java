@@ -2,46 +2,60 @@ package com.coursework.EmployeeBook.controller;
 
 import com.coursework.EmployeeBook.dto.Employee;
 import com.coursework.EmployeeBook.service.EmployeeService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Map;
 
-@RequestMapping("/employee")
 @RestController
+@RequestMapping("/employees")
 public class EmployeeController {
-    private final EmployeeService service;
+    private final EmployeeService employeeService;
 
-    public EmployeeController(EmployeeService service) {
-        this.service = service;
+    @Autowired
+    public EmployeeController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
     }
 
-    @GetMapping("/hello")
-    public String greetings() {
-        return "Добро пожаловать в программу";
+    // Добавление сотрудника
+    @PostMapping
+    public ResponseEntity<String> addEmployee(@RequestBody Employee employee) {
+        try {
+            employeeService.addEmployee(employee);
+            return ResponseEntity.ok("Сотрудник добавлен.");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
-    @GetMapping("/add")
-    public Employee add(@RequestParam String firstName, @RequestParam String lastName) {
-        return service.addEmployee(firstName, lastName);
+    // Удаление сотрудника
+    @DeleteMapping
+    public ResponseEntity<String> removeEmployee(@RequestParam String name, @RequestParam String surname) {
+        try {
+            employeeService.removeEmployee(name, surname);
+            return ResponseEntity.ok("Сотрудник удален.");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
-    @GetMapping("/remove")
-    public Employee remove(@RequestParam String firstName, @RequestParam String lastName) {
-        return service.deleteEmployee(firstName, lastName);
+    // Поиск сотрудника
+    @GetMapping
+    public ResponseEntity<Employee> findEmployee(@RequestParam String name, @RequestParam String surname) {
+        try {
+            Employee employee = employeeService.findEmployee(name, surname);
+            return ResponseEntity.ok(employee);
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
-    @GetMapping("/find")
-    public Employee find(@RequestParam String firstName, @RequestParam String lastName) {
-        return service.findEmployee(firstName, lastName);
-    }
-
+    // Получение всех сотрудников
     @GetMapping("/all")
-    public List<Employee> getAll() {
-        return service.getAll();
+    public ResponseEntity<Map<String, Employee>> getAllEmployees() {
+        return ResponseEntity.ok(employeeService.getAllEmployees());
     }
-
-
 }
+
+
